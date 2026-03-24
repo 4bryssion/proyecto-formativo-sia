@@ -1,16 +1,15 @@
-import  Input from "../shared/components/Input"
+import { CreateUserPage } from "@/features/users";
 
 export default function App(){
     return(
-        <div className="min-h-screen bg-green-800 flex items-center justify-center">
-            <h1 className="text-white text-4xl font-bold">
-                AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+        <div className="min-h text-center grid grid-cols-1 gap-6">
+
+            <h1 className="text-white text-4xl font-bold bg-fuchsia-800 p-6">
+                AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
             </h1>
 
-            <Input 
-                label = "Nombre"
-                placeHolder = "Ingrese su nombre"
-            />
+            <CreateUserPage/>
+
         </div>
     );
 }

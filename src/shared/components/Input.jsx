@@ -7,19 +7,32 @@ export default function Input({
     return(
         // Contenedor del input que se exporta con label, cuerpo y feedback meesage
         <div className="w-[320px]">
+
             {/* Label */}
-            <label 
-                className="3
-                    block
-                    text-caption
-                    mb-1
-                    text-text-primary
-                ">
-                {label}
-            </label>
+            {label && (
+                <label 
+                    className="3
+                        block
+                        text-caption
+                        text-[8px]
+                        mb-1
+                        place-self-start
+                    "
+                >
+                    {label}
+                </label>
+            )}
+
+            {/* ============================== */}
 
             {/* Contenedor del input */}
-            <div>
+            <div
+                className="
+                    relative
+                    h-12
+                    flex
+                    items-center
+                ">
 
                 {/* Área interactiva invisible de un input 48px */}
                 <div 
@@ -33,12 +46,11 @@ export default function Input({
                         /* Mueve el foco al siguiente elemento hermano del elemento actual. 'currentTarget' referencia el elemento que tiene el handler del evento. */
                         e.currentTarget.nextSibling.focus();
                     }}
-                    >
-
-                </div>
+                />
 
                 {/* Área visual del input */}
                 <input 
+                    type={type}
                     className="
                         relative
                         w-full
@@ -55,15 +67,11 @@ export default function Input({
                         focus: border-focus-border
                     "
                         {...props}
-                    >
-                </input>
+                />
 
             </div>
 
             {/* Feedback message */}
-            <div>
-
-            </div>
 
         </div>
     )
