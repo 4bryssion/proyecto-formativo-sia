@@ -9,7 +9,7 @@ export default function Input({
         <div className="w-[320px]">
             {/* Label */}
             <label 
-                className="
+                className="3
                     block
                     text-caption
                     mb-1
