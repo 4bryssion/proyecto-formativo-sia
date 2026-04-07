@@ -1,7 +1,19 @@
-import { Input, Button } from "@/shared";
+import { useState, useEffect } from "react";
+
+import { getDocumentTypes } from "@/features/users/services/selectService.js";
+
+import { Input, Button, DeleteCounter, DeleteEffect, DeleteCounter2, Select } from "@/shared";
+
 
 export default function UserRegisterForm(){
 
+    const [documentTypes, setDocumentTypes] = useState([]);
+
+    useEffect (() => {
+        getDocumentTypes().then(setDocumentTypes);
+    }, []);
+
+    // Handle
     const handleNameChange = (e)  => {
         console.log("Nombre: ", e.target.value)
     }
@@ -87,6 +99,12 @@ export default function UserRegisterForm(){
                         placeholder = "Ingrese su contraseña"
                         type="password"
                     />
+
+                    <Select 
+                        label = "Tipo de documento"
+                        name="documentType"
+                        options={documentTypes}
+                    />
                 </div>
 
 
@@ -109,6 +127,17 @@ export default function UserRegisterForm(){
                     </Button>
                 </div>
             </form>
+
+            {/* Uso del useState */}
+            {/* <DeleteCounter /> */}
+
+            {/* Uso del useEffect */}
+            {/* <DeleteEffect /> */}
+
+            {/* Uso del useEffect con dependencias de useState */}
+            {/* <DeleteCounter2 /> */}
+
+
         </div>
     )
 }
