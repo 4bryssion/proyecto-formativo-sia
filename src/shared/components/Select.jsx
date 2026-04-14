@@ -2,8 +2,20 @@ export default function Select({
     label,
     name,
     options = [],
+    error
 }){
     
+    const errorSelect = (
+        error && <p
+            className="
+                text-caption
+                text-error
+                place-self-start
+            "
+        >
+        {error}
+        </p>
+    )
 
     return(
         <div
@@ -13,13 +25,13 @@ export default function Select({
         >
             {label && (
                 <label
-                    className="
+                    className={`
                         block
                         text-caption
                         mb-1
-                        text-text-secondary
                         place-self-start
-                    "
+                        ${error ? "text-red-800" : "text-text-primary"}
+                    `}
                 >
                     {label}
                 </label>
@@ -28,13 +40,17 @@ export default function Select({
             <select
                 name={name}
                 
-                className="
+                className={`
                     w-full
                     h-12
                     border 
                     border-border
                     px-4
-                "
+
+                    hover:border-2
+                    hover:border-focus-border
+                    ${error ? "border-red-800" : "border border-border"}
+                `}
             >
                 <option
                     value=""
@@ -54,6 +70,10 @@ export default function Select({
                 }
 
             </select>
+
+            {/* Feedback message */}
+            {Select.value === "" && errorSelect}
+            
 
         </div>
     )

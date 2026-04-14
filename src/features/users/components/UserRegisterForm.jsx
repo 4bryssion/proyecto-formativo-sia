@@ -2,25 +2,93 @@ import { useState, useEffect } from "react";
 
 import { getDocumentTypes } from "@/features/users/services/selectService.js";
 
-import { Input, Button, DeleteCounter, DeleteEffect, DeleteCounter2, Select } from "@/shared";
+import { userSchema } from "../schemas/userSchema.js";
+
+import { Input, Button, Select } from "@/shared";
 
 
 export default function UserRegisterForm(){
 
+    // Estados:
+
     const [documentTypes, setDocumentTypes] = useState([]);
+
+    const [formData, setFormData] = useState({
+        userName: "", 
+        userEmail: "",
+        userPhone: "",
+        userDocumentType: "",
+        userDocumentNumber: "",
+        userPassword: ""
+    });
+
+    const [errors, setErrors] = useState({})
+
+    // Efectos:
 
     useEffect (() => {
         getDocumentTypes().then(setDocumentTypes);
     }, []);
 
-    // Handle
-    // const handleNameChange = (e)  => {
-    //     console.log("Nombre: ", e.target.value)
-    // }
+    // ===========================================
+    //                 Handles
+    // ===========================================
+    // Función que se ejecuta cada vez que cambia el valor de un input del formulario
 
-    // const handleEmailBlur = (e)  => {
-    //     console.log("Email: ", e.target.value)
-    // }
+    // Handle genérico:
+
+    const handleChange = (e) => {
+        // Se obtiene el nombre del campo y su valor
+        const { name, value } = e.target;
+
+        setFormData((prev) => ({
+            // Se copian todos los valores anteriores del estado
+            ...prev,
+
+            // Se actualiza únicamente lo que cambió
+            [name]: value
+        }));
+    }
+
+    // Handles personalizados:
+    
+    // Función que se ejecuta cuando se envía el formulario 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Se valida el objeto de formData usando el esquema definido con Zod
+        // safeParse devuelve un objeto indicando si la validacion fue exitosa o no
+        const result = userSchema.safeParse(formData);
+
+        // Si la validación falla
+        if (!result.success){
+            // Objeto donde se almacenarán los errores por campo
+            const fieldErrors = {};
+
+            // Zod devuelve los errores en un arreglo llamado issues
+            // Se recorren para asociar cada error a su campo correspondiente
+            result.error.issues.forEach((issue) => {
+                // Issue.path contiene la ruta del campo que falló
+                const field = issue.path[0];
+
+                // Se guarda el mensaje de error en el objeto fieldErrors
+                fieldErrors[field] = issue.message;
+            });
+
+            // Se actualiza el estado de errores para mostrarlos en el formulario
+            setErrors(fieldErrors);
+
+            // Se detiene la ejecución porque el formulario tiene errores
+            return;
+        }
+
+        // Si la validación es exitosa se limpian los errores anteriores 
+        setErrors({});
+
+        // result.data contiene los datos ya validados por Zod
+        console.log("Usuario valido:", result.data)
+
+    };
 
     return(
         <div>
@@ -41,6 +109,8 @@ export default function UserRegisterForm(){
                     gap-6
                     
                 "
+
+                onSubmit={handleSubmit}
             >
                 {/* Inputs */}
                 <div
@@ -55,7 +125,9 @@ export default function UserRegisterForm(){
                         label = "Nombre"
                         name = "userName"
                         placeholder = "Ingrese su nombre"
-                        // onChange = {handleNameChange}
+                        value={formData.userName}
+                        onChange = {handleChange}
+                        error={errors.userName}
                     />
 
                     <Input 
@@ -63,7 +135,9 @@ export default function UserRegisterForm(){
                         name = "userEmail"
                         placeholder = "Ingrese su correo"
                         type="email"
-                        // onBlur = {handleEmailBlur}
+                        value={formData.userEmail}
+                        onChange = {handleChange}
+                        error={errors.userEmail}
                     />
 
                     <Input 
@@ -71,18 +145,27 @@ export default function UserRegisterForm(){
                         name = "userPhone"
                         placeholder = "Ingrese su teléfono"
                         type="tel"
+                        value={formData.userPhone}
+                        onChange = {handleChange}
+                        error={errors.userPhone}
                     />
 
                     <Select 
                         label = "Tipo de documento"
                         name="userDocumentType"
                         options={documentTypes}
+                        value={formData.userDocumentType}
+                        onChange = {handleChange}
+                        error={errors.userDocumentType}
                     />
 
                     <Input 
                         label = "Número de documento"
                         name = "userDocumentNumber"
                         placeholder = "Ingrese su número de documentos"
+                        value={formData.userDocumentNumber}
+                        onChange = {handleChange}
+                        error={errors.userDocumentNumber}
                     />
 
                     <Input 
@@ -90,6 +173,9 @@ export default function UserRegisterForm(){
                         name  = "userPassword"
                         placeholder = "Ingrese su contraseña"
                         type="password"
+                        value={formData.userPassword}
+                        onChange = {handleChange}
+                        error={errors.userPassword}
                     />
 
                 </div>
@@ -114,16 +200,6 @@ export default function UserRegisterForm(){
                     </Button>
                 </div>
             </form>
-
-            {/* Uso del useState */}
-            {/* <DeleteCounter /> */}
-
-            {/* Uso del useEffect */}
-            {/* <DeleteEffect /> */}
-
-            {/* Uso del useEffect con dependencias de useState */}
-            {/* <DeleteCounter2 /> */}
-
 
         </div>
     )
