@@ -9,8 +9,9 @@ export default function Button({
 }){
 
     const variants = {
-        primary: "text-brand border text-h1",
-        secondary: "bg-black border border-border text-white hover:bg-surface-mute"
+        primary: "text-brand border text-body hover:bg-surface-muted  hover:text-text-inverse",
+
+        secondary: "bg-background border border-border text-text-primary hover:bg-surface-muted hover:text-text-inverse"
     }
 
     const sizes = {

@@ -14,13 +14,13 @@ export default function UserRegisterForm(){
     }, []);
 
     // Handle
-    const handleNameChange = (e)  => {
-        console.log("Nombre: ", e.target.value)
-    }
+    // const handleNameChange = (e)  => {
+    //     console.log("Nombre: ", e.target.value)
+    // }
 
-    const handleEmailBlur = (e)  => {
-        console.log("Email: ", e.target.value)
-    }
+    // const handleEmailBlur = (e)  => {
+    //     console.log("Email: ", e.target.value)
+    // }
 
     return(
         <div>
@@ -53,58 +53,45 @@ export default function UserRegisterForm(){
                 >
                     <Input 
                         label = "Nombre"
+                        name = "userName"
                         placeholder = "Ingrese su nombre"
-                        onChange = {handleNameChange}
-                    />
-
-                    <Input 
-                        label = "Edad"
-                        placeholder = "Ingrese su edad"
-                        type="number"
-                    />
-
-                    <Input 
-                        label = "Teléfono"
-                        placeholder = "Ingrese su teléfono"
-                        type="tel"
+                        // onChange = {handleNameChange}
                     />
 
                     <Input 
                         label = "Correo"
+                        name = "userEmail"
                         placeholder = "Ingrese su correo"
                         type="email"
-                        onBlur = {handleEmailBlur}
+                        // onBlur = {handleEmailBlur}
                     />
 
                     <Input 
-                        label = "Contraseña"
-                        placeholder = "Ingrese su contraseña"
-                        type="password"
-                    />
-
-                    <Input 
-                        label = "Contraseña"
-                        placeholder = "Ingrese su contraseña"
-                        type="password"
-                    />
-
-                    <Input 
-                        label = "Contraseña"
-                        placeholder = "Ingrese su contraseña"
-                        type="password"
-                    />
-
-                    <Input 
-                        label = "Contraseña"
-                        placeholder = "Ingrese su contraseña"
-                        type="password"
+                        label = "Teléfono"
+                        name = "userPhone"
+                        placeholder = "Ingrese su teléfono"
+                        type="tel"
                     />
 
                     <Select 
                         label = "Tipo de documento"
-                        name="documentType"
+                        name="userDocumentType"
                         options={documentTypes}
                     />
+
+                    <Input 
+                        label = "Número de documento"
+                        name = "userDocumentNumber"
+                        placeholder = "Ingrese su número de documentos"
+                    />
+
+                    <Input 
+                        label = "Contraseña"
+                        name  = "userPassword"
+                        placeholder = "Ingrese su contraseña"
+                        type="password"
+                    />
+
                 </div>
 
 
