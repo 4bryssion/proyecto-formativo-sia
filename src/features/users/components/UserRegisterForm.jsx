@@ -8,6 +8,7 @@ import { Input, Button, Select } from "@/shared";
 
 
 export default function UserRegisterForm(){
+    
 
     // Estados:
 
@@ -107,7 +108,6 @@ export default function UserRegisterForm(){
                     grid-cols-1
                     items-center
                     gap-6
-                    
                 "
 
                 onSubmit={handleSubmit}
