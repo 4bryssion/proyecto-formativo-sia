@@ -4,7 +4,7 @@ import { getDocumentTypes } from "@/features/users/services/selectService.js";
 
 import { userSchema } from "../schemas/userSchema.js";
 
-import { Input, Button, Select } from "@/shared";
+import { Input, Button, Select, Checkbox } from "@/shared";
 
 
 export default function UserRegisterForm(){
@@ -20,7 +20,13 @@ export default function UserRegisterForm(){
         userPhone: "",
         userDocumentType: "",
         userDocumentNumber: "",
-        userPassword: ""
+        userPassword: "",
+
+        // Flags booleanos 
+        isStaff: false,
+        isActive: true,
+        isSuperUser: false,
+
     });
 
     const [errors, setErrors] = useState({})
@@ -40,14 +46,14 @@ export default function UserRegisterForm(){
 
     const handleChange = (e) => {
         // Se obtiene el nombre del campo y su valor
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
 
         setFormData((prev) => ({
             // Se copian todos los valores anteriores del estado
             ...prev,
 
             // Se actualiza únicamente lo que cambió
-            [name]: value
+            [name]: type === "chechbox" ? checked : value,
         }));
     }
 
@@ -176,6 +182,30 @@ export default function UserRegisterForm(){
                         value={formData.userPassword}
                         onChange = {handleChange}
                         error={errors.userPassword}
+                    />
+
+                    <Checkbox
+                        id="isStaff"
+                        name="isStaff"
+                        label="Es staff"
+                        checked={formData.isStaff}
+                        onChange={handleChange}
+                    />
+
+                    <Checkbox
+                        id="isActive"
+                        name="isActive "
+                        label="Activo"
+                        checked={formData.isActive}
+                        onChange={handleChange}
+                    />
+                    
+                    <Checkbox
+                        id="isSuperUser"
+                        name="isSuperUser"
+                        label="Es un super usuario"
+                        checked={formData.isSuperUser}
+                        onChange={handleChange}
                     />
 
                 </div>
