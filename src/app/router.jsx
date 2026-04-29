@@ -1,28 +1,49 @@
-import { createBrowserRouter } from "react-router-dom";
-import MainLayouts from "@/shared/layouts/MainLayout"
+import { createBrowserRouter, Navigate } from "react-router-dom";
+
+import { 
+    // CallToActionLayout, 
+    AuthLayout, 
+    DashboardLayout
+
+} from "@/shared"
+
 import  CreateUserPage  from "../features/users/pages/CreateUserPage"
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayouts />,
+        element: <Navigate to="auth" replace />
+    },
+    {
+        path: "/auth",
+        element: <AuthLayout />,
         children: [
             {
                 index: true,
-                element: <h1 className="p-4">Inicio</h1>
-            },
+                element: <h1>Inicio Auth</h1>
+            }
+        ],
+    },
+    {
+        path: "/dashboard",
+        element: <DashboardLayout />,
+        children: [
             {
-                path: "crear-usuario",
-                element: <CreateUserPage/>
-            },
-            {
-                path: "recursos",
-                element: <h1 className="p-4">Recursos</h1>
+                index: true,
+                element: <h1 className="p-4">Inicio Dashboard</h1>
             },
             {
                 path: "contacto",
-                element: <h1 className="p-4">Contacto</h1>
+                element: <h1>Contacto</h1>
+            },
+            {
+                path: "usuarios",
+                element: <h1>Usuarios</h1>
+            },
+            {
+                path: "productos",
+                element: <h1>Productos</h1>
             },
         ],
     },

@@ -1,14 +1,30 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { SquareArrowRightEnter, Menu } from "lucide-react";
 
 import { getDocumentTypes } from "@/features/users/services/selectService.js";
 
 import { userSchema } from "../schemas/userSchema.js";
 
-import { Input, Button, Select, Checkbox } from "@/shared";
+import { 
+    Input, 
+    Button, 
+    Select, 
+    Checkbox, 
+    IconButton, 
+    Dropdown, 
+    DropdownTrigger, 
+    DropdownItem, 
+    DropdownContent 
+
+} from "@/shared";
 
 
 export default function UserRegisterForm(){
+
+    // Constantes:
     
+    const navigate = useNavigate();
 
     // Estados:
 
@@ -98,11 +114,17 @@ export default function UserRegisterForm(){
     };
 
     return(
-        <div>
+        <div
+            className="
+                
+            "
+        >
             <h1
                 className="
                     text-text-primary
                     text-2xl mb-6
+                    text-center
+                    pt-6
                 "
             >
                 Registro de Usuarios
@@ -125,6 +147,9 @@ export default function UserRegisterForm(){
                         grid-cols-2
                         gap-6
                         my-0 mx-auto
+                        border
+                        p-12
+                        rounded-md
                     "
                 >
                     <Input 
@@ -216,18 +241,66 @@ export default function UserRegisterForm(){
                     className=" flex items-center justify-center gap-6"
                 >
                     <Button
+                        variant = "secondary"
+                        size = "sm"
+                        onClick={() => navigate(-1)}
+                    >
+                        Cancelar
+                    </Button>
+
+                    <Button
                         variant = "primary"
                         size = "sm"
                     >
                         Guardar
                     </Button>
 
-                    <Button
-                        variant = "secondary"
-                        size = "sm"
+                    {/* Icon button */}
+                    <Link
+                        to="/dashboard"
                     >
-                        Cancelar
-                    </Button>
+                        <IconButton
+                            variant="ghost"
+                        >
+                            <SquareArrowRightEnter />
+                        </IconButton>
+                    </Link>
+
+                    {/* Dropdown */}
+                    <div
+                        className="p-10"
+                    >
+                        <Dropdown>
+                            <DropdownTrigger>
+                                <IconButton ariaLabel="Menú de usuario">
+                                    <Menu />
+                                </IconButton>
+                            </DropdownTrigger>
+
+                            <DropdownContent className="right-0 w-48">
+
+                                <DropdownItem>
+                                    <Link to="/auth" className="block w-full">
+                                        Perfil
+                                    </Link>
+                                </DropdownItem>
+
+                                <DropdownItem>
+                                    <Link to="/dashboard" className="block w-full">
+                                        Configuracion
+                                    </Link>
+                                </DropdownItem>
+                                
+                            </DropdownContent>
+                        </Dropdown>
+                    </div>
+
+                    {/* <IconButton
+                        onClick={() => navigate("/dashboard")}
+                    >
+                        <SquareArrowRightEnter />
+                    </IconButton> */}
+
                 </div>
             </form>
 

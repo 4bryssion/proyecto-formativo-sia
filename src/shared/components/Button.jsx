@@ -37,6 +37,7 @@ export default function Button({
                 justify-center
                 rounded-md
                 transition-colors 
+                cursor-pointer
                 ${variants[variant]}  
                 ${sizes[size]}
                 ${type}
