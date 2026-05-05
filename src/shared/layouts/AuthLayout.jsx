@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import heroBg from "@/assets/images/bg-4.jpg"
-import { CreateUserPage } from "@/features/users"
+import { AuthRegisterForm } from "@/features/auth"
+
 
 export default function AuthLayout(){
     return(
@@ -17,8 +18,10 @@ export default function AuthLayout(){
                 style={{ backgroundImage: `url(${heroBg})` }}
             />
 
-            <CreateUserPage />
-            <Outlet/>
+            <main>
+                <AuthRegisterForm />
+                <Outlet />
+            </main>  
         </div>
     );
 }

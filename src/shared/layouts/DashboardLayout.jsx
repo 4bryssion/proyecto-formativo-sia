@@ -1,11 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
 import { Undo2 } from "lucide-react";
+import { Navbar } from "@/shared";
 
 import {  
     IconButton 
 } from "@/shared";
 
 import heroBg from "@/assets/images/bg-4.jpg"
+import CreateUserPage from "../../features/users/pages/CreateUserPage";
+import { AuthRegisterForm } from "@/features/auth"
 
 export default function DashboardLayout(){
     return(
@@ -22,15 +25,22 @@ export default function DashboardLayout(){
                 style={{ backgroundImage: `url(${heroBg})` }}
             />
 
-            <Link to="/auth">
+            <Navbar />
+
+            {/* <Link to="/auth">
                 <IconButton 
                     variant="ghost"
                 >
                     <Undo2 />
                 </IconButton>
-            </Link>
+            </Link> */}
 
-            <Outlet/>
+            {/* Contenido dinámico de las páginas  */}
+            <main>
+                {/* <CreateUserPage /> */}
+                <Outlet/>
+            </main>
+            
         </div>
     );
 }

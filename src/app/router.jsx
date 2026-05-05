@@ -7,8 +7,9 @@ import {
 
 } from "@/shared"
 
-import  CreateUserPage  from "../features/users/pages/CreateUserPage"
+import { AuthRegisterForm } from "@/features/auth";
 
+import { CreateUserPage } from "@/features/users";
 
 const router = createBrowserRouter([
     {
@@ -20,8 +21,7 @@ const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [
             {
-                index: true,
-                element: <h1>Inicio Auth</h1>
+                index: true
             }
         ],
     },
@@ -31,15 +31,15 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <h1 className="p-4">Inicio Dashboard</h1>
+                element: <CreateUserPage />
             },
             {
-                path: "contacto",
+                path: "/dashboard/auth",
+                element: <AuthRegisterForm />
+            },
+            {
+                path: "Contacto",
                 element: <h1>Contacto</h1>
-            },
-            {
-                path: "usuarios",
-                element: <h1>Usuarios</h1>
             },
             {
                 path: "productos",

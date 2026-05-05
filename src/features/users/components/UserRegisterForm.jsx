@@ -255,7 +255,7 @@ export default function UserRegisterForm(){
                         Guardar
                     </Button>
 
-                    {/* Icon button */}
+                    {/* Icon button
                     <Link
                         to="/dashboard"
                     >
@@ -264,7 +264,7 @@ export default function UserRegisterForm(){
                         >
                             <SquareArrowRightEnter />
                         </IconButton>
-                    </Link>
+                    </Link> */}
 
                     {/* Dropdown */}
                     <div
