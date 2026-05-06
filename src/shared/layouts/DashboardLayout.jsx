@@ -7,8 +7,8 @@ import {
 } from "@/shared";
 
 import heroBg from "@/assets/images/bg-4.jpg"
-import CreateUserPage from "../../features/users/pages/CreateUserPage";
-import { AuthRegisterForm } from "@/features/auth"
+
+import { HomePage } from "@/features/home"
 
 export default function DashboardLayout(){
     return(
@@ -37,7 +37,7 @@ export default function DashboardLayout(){
 
             {/* Contenido dinámico de las páginas  */}
             <main>
-                {/* <CreateUserPage /> */}
+                <HomePage />
                 <Outlet/>
             </main>
             

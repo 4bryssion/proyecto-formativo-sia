@@ -5,7 +5,8 @@ import {
     Input, 
     Button, 
     Select, 
-    Checkbox, 
+    Checkbox,
+    Switch, 
     Dropdown, 
     DropdownTrigger, 
     DropdownItem, 
@@ -14,9 +15,20 @@ import {
 } from "@/shared";
 
 import logo from "@/assets/logo-1.png";
+import { useState } from "react";
 
 export default function Navbar(){
 
+    // Estado que controla el switch
+    const [ isActive, setIsActive ] = useState(true);
+
+    // Manejador del estado del switch 
+    const handleStatusChange = (value) => {
+        setIsActive(value);
+
+        // Aquí generalmente va el llamado a una API
+        console.log("Nuevo estado ", value)
+    }
 
     return(
         <nav
@@ -54,6 +66,13 @@ export default function Navbar(){
                             <img src={logo} alt="logo" className="h-12"/>
                         </Link>
                     </div>
+
+                    {/* Switch */}
+                    <Switch 
+                        checked={isActive}
+                        onChange={handleStatusChange}
+                        size="md"
+                    />
 
                     {/* Link de navegación */}
                     <ul

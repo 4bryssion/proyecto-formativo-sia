@@ -12,12 +12,14 @@ import {
     Select, 
     Checkbox, 
     IconButton, 
+    FileInput,
     Dropdown, 
     DropdownTrigger, 
     DropdownItem, 
     DropdownContent 
 
 } from "@/shared";
+import { tr } from "zod/locales";
 
 
 export default function UserRegisterForm(){
@@ -37,6 +39,7 @@ export default function UserRegisterForm(){
         userDocumentType: "",
         userDocumentNumber: "",
         userPassword: "",
+        userImage: [],
 
         // Flags booleanos 
         isStaff: false,
@@ -232,6 +235,30 @@ export default function UserRegisterForm(){
                         checked={formData.isSuperUser}
                         onChange={handleChange}
                     />
+
+                    {/* Contenedor del file input */}
+                    <div>
+                        <h4
+                            className="m-3 ml-0"
+                        >
+                            Máximo de 12 archivos (.jpg .jpeg .pdf) de 10MB
+                        </h4>
+
+                        <FileInput 
+                            value={formData.userImage}
+                            onChange={(files) =>
+                                setFormData((prev) => ({ ...prev, userImage: files}))
+                            }
+                            multiple={false}
+                        />
+                        {errors.userImage && (
+                            <span
+                                className="text-red-500 text-sm"
+                            >
+                                {errors.userImage}
+                            </span>
+                        )}
+                    </div>
 
                 </div>
 
