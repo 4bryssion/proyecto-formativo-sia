@@ -19,7 +19,7 @@ import {
     DropdownContent 
 
 } from "@/shared";
-import { tr } from "zod/locales";
+// import { tr } from "zod/locales";
 
 
 export default function UserRegisterForm(){
@@ -147,7 +147,8 @@ export default function UserRegisterForm(){
                 <div
                     className="
                         grid 
-                        grid-cols-2
+                        grid-cols
+                        sm:grid-cols-2
                         gap-6
                         my-0 mx-auto
                         border

@@ -96,7 +96,7 @@ export function DropdownContent({ children, className = "" }) {
     return(
         <div
             role="menu"
-            className={`absolute mt-1 min-w-48 border text-text-inverse p-1 dark:bg-neutral-950/80 backdrop-blur-[1px] shadow-lg rounded-2xl overflow-hidden hover:shadow-black transition-shadow duration-700 ${className}`}
+            className={`absolute z-100 mt-1 min-w-48 border text-text-inverse p-1 dark:bg-neutral-950/80 backdrop-blur-[1px] shadow-lg rounded-2xl overflow-hidden hover:shadow-black transition-shadow duration-700 ${className}`}
         >
             {children}
         </div>

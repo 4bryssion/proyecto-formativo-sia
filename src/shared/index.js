@@ -7,6 +7,8 @@ export { default as Card } from "./components/Card";
 export { default as Switch } from "./components/Switch";
 export { default as ListComponent } from "./components/ListComponent";
 export { default as FileInput } from "./components/FileInput";
+export { default as SearchField } from "./components/SearchField";
+export { default as DataTable } from "./components/DataTable";
 
 export { 
     Dropdown, 

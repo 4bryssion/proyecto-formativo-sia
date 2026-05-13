@@ -9,7 +9,9 @@ import {
 
 import { AuthRegisterForm } from "@/features/auth";
 
-import { CreateUserPage } from "@/features/users";
+import { HomePage } from "@/features/home"
+
+import { CreateUserPage, ListUserPage } from "@/features/users";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
+                element: <HomePage />
+            },
+            {
+                path: "/dashboard/userCreate",
                 element: <CreateUserPage />
             },
             {
@@ -38,12 +44,8 @@ const router = createBrowserRouter([
                 element: <AuthRegisterForm />
             },
             {
-                path: "Contacto",
-                element: <h1>Contacto</h1>
-            },
-            {
-                path: "productos",
-                element: <h1>Productos</h1>
+                path: "/dashboard/userList",
+                element: <ListUserPage />
             },
         ],
     },

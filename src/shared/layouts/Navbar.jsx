@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Search, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { 
@@ -10,14 +11,25 @@ import {
     Dropdown, 
     DropdownTrigger, 
     DropdownItem, 
-    DropdownContent 
+    DropdownContent,
+    SearchField
 
 } from "@/shared";
 
 import logo from "@/assets/logo-1.png";
-import { useState } from "react";
 
 export default function Navbar(){
+
+    // Componente de búsqueda
+    const [ search, setSearch ] = useState("");
+
+    const handleSearch = (value) => {
+        console.log("Buscar: ", value)
+    };
+
+    const handleClear = () => {
+        console.log("Campo limpiado");
+    };
 
     // Estado que controla el switch
     const [ isActive, setIsActive ] = useState(true);
@@ -52,12 +64,11 @@ export default function Navbar(){
                     {/* Logo de marca */}
                     <div
                         className={`
-                            flex
-                            items-center    
+                            hidden sm:inline-flex items-center    
                         `}
                     >
                         <Link 
-                            to={"/"}
+                            to={"/dashboard"}
                             className={`
                                 text-h1
                                 font-heading    
@@ -72,6 +83,7 @@ export default function Navbar(){
                         checked={isActive}
                         onChange={handleStatusChange}
                         size="md"
+                        className="hidden sm:inline-flex"
                     />
 
                     {/* Link de navegación */}
@@ -114,6 +126,17 @@ export default function Navbar(){
                         </li>
                     </ul>
 
+                    <SearchField
+                        value={search}
+                        onChange={setSearch}
+                        onSubmit={handleSearch}
+                        onClear={handleClear}
+                        placeholder="Buscar productos..."
+                        size="md"
+                        variant="filled"
+                        className="w-80"
+                    />
+
                     {/* Sección derecha: búsqueda + usuario */}
                     <div
                         className={`
@@ -124,18 +147,23 @@ export default function Navbar(){
                             className={`relative hidden sm:block `}
                         >
                             {/* Icono de busqueda search */}
-                            <Search
+                            {/* <Search
                                 className={`
                                     absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-500    
                                 `}
-                            />
+                            /> */}
                                 
                             {/* Input */}
-                            <input 
+                            {/* <input 
                                 placeholder="Buscar"
                                 className="pl-9 pr-4 py-2.5 border rounded-lg text-body focus:outline-none focus:ring-2 focus:ring-text-primary"
-                            />
+                            /> */}
+
+                            
+
                         </div>
+
+                        
 
                         {/* Icono de usuario
                         <Link>
@@ -148,7 +176,7 @@ export default function Navbar(){
 
                         {/* Dropdown */}
                         <div
-                            className="p-10"
+                            className="p-10 z-10"
                         >
                             <Dropdown>
                                 <DropdownTrigger>
@@ -160,14 +188,20 @@ export default function Navbar(){
                                 <DropdownContent className="right-0 w-48">
 
                                     <DropdownItem>
-                                        <Link to="/" className="block w-full">
+                                        <Link to="/dashboard" className="block w-full">
                                             Perfil
                                         </Link>
                                     </DropdownItem>
 
                                     <DropdownItem>
-                                        <Link to="/dashboard/auth" className="block w-full">
-                                            Configuracion
+                                        <Link to="/dashboard/userCreate" className="block w-full">
+                                            Crear usuario
+                                        </Link>
+                                    </DropdownItem>
+
+                                    <DropdownItem>
+                                        <Link to="/dashboard/userList" className="block w-full">
+                                            Gestión de usuarios
                                         </Link>
                                     </DropdownItem>
 

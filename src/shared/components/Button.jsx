@@ -5,6 +5,7 @@ export default function Button({
     size = "md", // Define tamaño visual
     type = "button", // Tipos de botón(buttom, submit, reset)
     children, // Contenido interno del botón(texto, icono) 
+    className,
     ...props // Propiedades adicionales (onClick, disable, etc)
 }){
 
@@ -38,6 +39,7 @@ export default function Button({
                 rounded-md
                 transition-colors 
                 cursor-pointer
+                ${className}
                 ${variants[variant]}  
                 ${sizes[size]}
                 ${type}
