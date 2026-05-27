@@ -1,0 +1,1 @@
+export { default as AuthRegisterForm } from "./components/AuthRegisterForm";
