@@ -2,9 +2,13 @@ import { DataTable, Button } from "@/shared"
 import { userColumns } from "../table/userColumns"
 import { users } from "../data/users"
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import ReportConfigModal from "../reports/components/ReportConfigModal.jsx"
 
 export default function ListUserPage() {
 
+    const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
   return (
     <div className="p-6">
@@ -13,13 +17,13 @@ export default function ListUserPage() {
             <h1 className="text-xl font-semibold mb-4">Usuarios</h1>
 
             <div className="flex gap-12">
-                <Link to="/dashboard">
-                    <Button
-                        variant="secondary" 
-                    >
-                        Reporte
-                    </Button>
-                </Link>
+                
+                <Button
+                    variant="secondary" 
+                    onClick={() => setIsReportModalOpen(true)}
+                >
+                    Generar Reporte
+                </Button>
 
 
                 <Link to="/dashboard/userCreate">
@@ -38,6 +42,11 @@ export default function ListUserPage() {
       <DataTable
         data={users}
         columns={userColumns}
+      />
+
+      <ReportConfigModal
+        isOpen={isReportModalOpen}
+        onClose={() => setIsReportModalOpen(false)}
       />
 
 
