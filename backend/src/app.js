@@ -10,16 +10,20 @@ import cors from "cors";
 // Importamos las rutas del feature users
 // Cada feature expone su propio router independiente
 import userRoutes from "./features/users/user.routes.js";
+import authRoutes from "./features/auth/auth.routes.js"
+import accessRoutes from "./features/access/access.routes.js"
 
 
 // Creamos la instancia principal de la aplicación Express
 const app = express();
 
 
-// Middleware de CORS
-// Permite solicitudes únicamente desde el frontend en localhost:5173
-// (típico proyecto Vite en desarrollo)
-app.use(cors({ origin: "http://localhost:5173" }));
+const allowedOrigins = [
+    "http://localhost:5173",
+    "http://localhost:5174",
+];
+
+app.use(cors({ origin: allowedOrigins }));
 
 
 // Middleware para parsear cuerpos de petición en formato JSON
@@ -31,7 +35,8 @@ app.use(express.json());
 // Todas las rutas del feature users quedarán bajo el prefijo /api/users
 // Ejemplo final: POST http://localhost:4000/api/users
 app.use("/api/users", userRoutes);
-
+app.use("/api/auth", authRoutes);
+app.use("/api/access", accessRoutes);
 
 // Exportamos la aplicación configurada
 // El arranque del servidor se hace en server.js

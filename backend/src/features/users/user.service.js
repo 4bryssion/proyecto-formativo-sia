@@ -1,3 +1,5 @@
+import bcrypt from "bcrypt";
+
 // Importamos el repositorio de usuarios.
 // El service depende del repository para acceder a la persistencia,
 // pero el repository NO debe conocer el service.
@@ -14,6 +16,14 @@ export const userService = {
   // idealmente ya validados a nivel estructural (DTO / schema)
   async createUser(data) {
 
+    const hashedPassword = await bcrypt.hash(data.userPassword, 10);
+
+    const userData = {
+      ...data,
+      userPassword: hashedPassword,
+    };
+
+    console.log("Service data: ", data);
 
     // En este punto, en una arquitectura real, deberían ocurrir:
     // - Validaciones de reglas de negocio
@@ -21,9 +31,8 @@ export const userService = {
     // - Verificaciones de unicidad (email, documento, etc.)
     // - Decisiones de negocio (roles, flags, estados iniciales)
 
-
     // Actualmente, el método solo delega directamente al repository,
     // sin agregar ninguna lógica adicional.
-    return await userRepository.create(data);
+    return await userRepository.create(userData);
   },
 };

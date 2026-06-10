@@ -34,6 +34,9 @@ export const userSchema = z.object({
         .regex(/[0-9]/, "Debe contener al menos un número")
         .regex(/[^A-Za-z0-9]/, "Debe contener al menos un carácter especial"),
 
+    isStaff: z.boolean(),
+    isActive: z.boolean(),
+    isSuperUser: z.boolean(),
 
     userImage: fileSchema.shape.files.optional()
         

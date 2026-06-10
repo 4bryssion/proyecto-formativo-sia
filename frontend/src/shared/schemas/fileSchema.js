@@ -8,7 +8,7 @@ const ACCEPTED_TYPES = [
     "application/pdf",
 ]
 
-const MAX_SIZE = 10 * 10 * 1024;  // 10MB
+const MAX_SIZE = 10 * 1024 * 1024;  // 10MB
 
 export const fileSchema = z.object({
     files: z

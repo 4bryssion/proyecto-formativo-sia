@@ -31,21 +31,21 @@ export default function Button({
     return(
 
         <button
+            type={type}
             className= {`
                 relative
-                inline-flex 
+                inline-flex
                 items-center
                 justify-center
                 rounded-md
-                transition-colors 
+                transition-colors
                 cursor-pointer
                 ${className}
-                ${variants[variant]}  
+                ${variants[variant]}
                 ${sizes[size]}
-                ${type}
             `}
             {...props}
-            
+
         >
             {children}
         </button>
