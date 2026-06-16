@@ -16,13 +16,12 @@ export const userController = {
     // Log del cuerpo de la petición
     // Útil en desarrollo para validar que el frontend envía correctamente los datos
     // En producción suele reemplazarse por logging estructurado o eliminarse
-    console.log("BODY RECIBIDO:", req.body); // CLAVE
+    console.log("BODY RECIBIDO:", req.body);
 
 
     try {
-      // Llamamos al servicio de usuario, pasando los datos recibidos
-      // Aquí ocurre la lógica real de negocio (validaciones, persistencia, etc.)
-      const user = await userService.createUser(req.body);
+      const avatarUrl = req.files?.[0]?.path ?? null;
+      const user = await userService.createUser({ ...req.body, userImage: avatarUrl });
 
 
       // Respuesta HTTP en caso de éxito

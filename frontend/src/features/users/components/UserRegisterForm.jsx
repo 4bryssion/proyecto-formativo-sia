@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
-import { getDocumentTypes } from "@/features/users/services/selectService.js";
-import { Input, Button, Select, Checkbox, IconButton, Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from "@/shared";
-import { userSchema } from "../schemas/userSchema";
 import { Link, useNavigate } from "react-router-dom";
-import { ExternalLink, Menu } from "lucide-react";
-import FileInput from "../../../shared/components/FileInput";
+
+import { 
+    Input, 
+    Button, 
+    Select, 
+    Checkbox, 
+    IconButton,
+    FileInput
+} from "@/shared";
+
+import { getDocumentTypes } from "@/features/users/services/selectService.js";
+import { userSchema } from "../schemas/userSchema";
 import { createUser } from "../services/userService";
 
 export default function UserRegisterForm(){
@@ -110,19 +117,15 @@ export default function UserRegisterForm(){
         // result.data contiene los datos ya validados por Zod
         const response = await createUser(result.data);
 
-
         // Log informativo para desarrollo
         console.log("Usuario creado:", response);
-
 
         // Feedback básico al usuario
         alert("Usuario creado correctamente");
 
-
         // Navegamos a la vista anterior
         // navigate(-1) equivale a "volver atrás"
         navigate(-1);
-
 
     } catch (error) {
         // Capturamos errores de red o errores lanzados por el service
@@ -287,15 +290,6 @@ export default function UserRegisterForm(){
                     >
                         Cancelar
                     </Button>
-
-                    {/* Icon Button */}
-                    <Link to="/dashboard">
-                        <IconButton
-                            variant="default"
-                        >
-                            <ExternalLink/>
-                        </IconButton>
-                    </Link>
                 </div>
             </form>
         </div>

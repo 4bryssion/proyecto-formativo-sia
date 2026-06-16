@@ -3,11 +3,12 @@
 // y mantener el archivo principal de la app limpio.
 import { Router } from "express";
 
-
 // Importamos el controlador de usuarios.
 // El router nunca implementa lógica,
 // solo delega la ejecución al controller.
 import { userController } from "./user.controller.js";
+import { authenticateToken } from "../../middlewares/auth.middleware.js";
+import { upload } from "../../middlewares/upload.middleware.js";
 
 
 // Creamos una instancia del router de Express
@@ -18,7 +19,12 @@ const router = Router();
 // POST /users
 // Cuando se recibe una petición POST en la raíz del recurso,
 // Express ejecuta el método create del controller.
-router.post("/", userController.create);
+router.post(
+    "/",
+    authenticateToken,
+    upload.array("userImage", 5),
+    userController.create
+);
 
 
 // Exportamos el router para ser registrado en la aplicación principal

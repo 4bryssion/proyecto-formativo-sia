@@ -7,6 +7,7 @@ import {
 } from "@/shared";
 
 import { authSchema } from "../schemas/authSchema.js";
+import { login } from "../services/authService.js";
 
 export default function AuthRegisterForm(){
 
@@ -17,8 +18,8 @@ export default function AuthRegisterForm(){
     // Estados:
 
     const [formData, setFormData] = useState({
-        authEmail: "",
-        authPassword: "",
+        userEmail: "",
+        userPassword: "",
     });
 
     const [errors, setErrors] = useState({})
@@ -46,7 +47,7 @@ export default function AuthRegisterForm(){
     // Handles personalizados:
     
     // Función que se ejecuta cuando se envía el formulario 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Se valida el objeto de formData usando el esquema definido con Zod
@@ -78,9 +79,15 @@ export default function AuthRegisterForm(){
         // Si la validación es exitosa se limpian los errores anteriores 
         setErrors({});
 
-        // result.data contiene los datos ya validados por Zod
-        console.log("Usuario valido:", result.data)
+        try {
+            const data =  await login(result.data)
 
+            sessionStorage.setItem("token", data.token); // Clave
+
+            navigate("/dashboard/userList");
+        } catch (error) {
+            alert(error.message);
+        }
     };
 
 
@@ -126,22 +133,22 @@ export default function AuthRegisterForm(){
                 >
                     <Input 
                         label = "Correo"
-                        name = "authEmail"
+                        name = "userEmail"
                         placeholder = "Ingrese su correo"
                         type="email"
-                        value={formData.authEmail}
+                        value={formData.userEmail}
                         onChange = {handleChange}
-                        error={errors.authEmail}
+                        error={errors.userEmail}
                     />
 
                     <Input 
                         label = "Contraseña"
-                        name  = "authPassword"
+                        name  = "userPassword"
                         placeholder = "Ingrese su contraseña"
                         type="password"
-                        value={formData.authPassword}
+                        value={formData.userPassword}
                         onChange = {handleChange}
-                        error={errors.authPassword}
+                        error={errors.userPassword}
                     />
                 </div>
 
@@ -153,17 +160,16 @@ export default function AuthRegisterForm(){
                     <Button
                         variant = "secondary"
                         size = "sm"
-                        onClick={() => navigate(-1)}
                     >
                         Cancelar
                     </Button>
 
                     <Button
                         variant = "primary"
-                        size = "sm"
-                        onClick={() => navigate("/dashboard")}
+                        size = "md"
+                        type="submit"
                     >
-                        Iniciar Sesión
+                        Ingresar
                     </Button>
 
                 </div>

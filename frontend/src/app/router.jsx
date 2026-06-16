@@ -1,9 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import { 
-    // CallToActionLayout, 
+import {  
     AuthLayout, 
-    DashboardLayout
+    DashboardLayout,
+    ProtectedRoute
 
 } from "@/shared"
 
@@ -29,7 +29,10 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: 
+            <ProtectedRoute> 
+                <DashboardLayout /> 
+            </ProtectedRoute>,
         children: [
             {
                 index: true,

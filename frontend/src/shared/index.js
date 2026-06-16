@@ -17,6 +17,8 @@ export {
     DropdownContent 
 } from "./components/DropdownContext"
 
+export { default as ProtectedRoute } from "./components/auth/ProtectedRoute";
+
 export { default as MainLayout } from "./layouts/MainLayout"
 // export { default as CallToActionLayout } from "./layouts/CallToActionLayout"
 export { default as AuthLayout } from "./layouts/AuthLayout"

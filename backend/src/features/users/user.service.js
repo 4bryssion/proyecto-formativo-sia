@@ -21,6 +21,9 @@ export const userService = {
     const userData = {
       ...data,
       userPassword: hashedPassword,
+      isStaff: data.isStaff === "true" || data.isStaff === true,
+      isActive: data.isActive === "true" || data.isActive === true,
+      isSuperUser: data.isSuperUser === "true" || data.isSuperUser === true,
     };
 
     console.log("Service data: ", data);

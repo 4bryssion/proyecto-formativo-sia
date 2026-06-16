@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Search, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "@/features/auth/services/logoutService";
 import { 
     IconButton,
     Input, 
@@ -40,6 +41,13 @@ export default function Navbar(){
 
         // Aquí generalmente va el llamado a una API
         console.log("Nuevo estado ", value)
+    }
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/auth");
     }
 
     return(
@@ -205,10 +213,8 @@ export default function Navbar(){
                                         </Link>
                                     </DropdownItem>
 
-                                    <DropdownItem>
-                                        <Link to="/dashboard/auth" className="block w-full">
-                                            Cerrar Sesión
-                                        </Link>
+                                    <DropdownItem onClick={handleLogout}>
+                                        Cerrar Sesión
                                     </DropdownItem>
                                     
                                 </DropdownContent>
