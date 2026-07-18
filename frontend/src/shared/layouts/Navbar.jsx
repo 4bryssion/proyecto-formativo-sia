@@ -196,6 +196,12 @@ export default function Navbar(){
                                 <DropdownContent className="right-0 w-48">
 
                                     <DropdownItem>
+                                        <Link to="/dashboard/access" className="block w-full">
+                                            Admin
+                                        </Link>
+                                    </DropdownItem>
+
+                                    <DropdownItem>
                                         <Link to="/dashboard" className="block w-full">
                                             Perfil
                                         </Link>

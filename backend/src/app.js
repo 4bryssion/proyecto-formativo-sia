@@ -12,6 +12,8 @@ import cors from "cors";
 import userRoutes from "./features/users/user.routes.js";
 import authRoutes from "./features/auth/auth.routes.js"
 import accessRoutes from "./features/access/access.routes.js"
+import groupsRoutes from "./features/groups/groups.routes.js"
+import permissionsRoutes from "./features/permissions/permissions.routes.js"
 
 
 // Creamos la instancia principal de la aplicación Express
@@ -32,11 +34,13 @@ app.use(express.json());
 
 
 // Registro del router de usuarios
-// Todas las rutas del feature users quedarán bajo el prefijo /api/users
+// Todas las rutas del feature users quedarán bajo el prefijo /api/feature
 // Ejemplo final: POST http://localhost:4000/api/users
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/access", accessRoutes);
+app.use("/api/groups", groupsRoutes);
+app.use("/api/permissions", permissionsRoutes);
 
 // Exportamos la aplicación configurada
 // El arranque del servidor se hace en server.js

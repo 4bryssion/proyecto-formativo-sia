@@ -84,7 +84,7 @@ export default function AuthRegisterForm(){
 
             sessionStorage.setItem("token", data.token); // Clave
 
-            navigate("/dashboard/userList");
+            navigate("/dashboard");
         } catch (error) {
             alert(error.message);
         }
