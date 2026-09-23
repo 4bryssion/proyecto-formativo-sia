@@ -25,7 +25,14 @@ const allowedOrigins = [
     "http://localhost:5174",
 ];
 
-app.use(cors({ origin: allowedOrigins }));
+app.use(
+    cors({ 
+        origin: [
+            "http://grupo5.ricoprogramar.com",
+
+        ], 
+    }),
+);
 
 
 // Middleware para parsear cuerpos de petición en formato JSON
